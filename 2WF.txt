@@ -1,0 +1,42 @@
+Q.Create an HTML form that contain the Employee Registration details and writea
+JavaScript to validate DOB, Joining Date, and Salary. 
+
+<html>
+    <head>
+        <script type="text/javascript">
+            function validate(){
+            var regName=/^[a-zA-z]+[a-zA-Z]+$/;
+            var dateformatdob = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
+            var dateformatjdate = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
+            var salaryformat=/^\d{1,6}(?:\.\d{0,2})?$/
+            var name=document.getElementById("name").value;
+            var dob=document.getElementById("dob").value;
+            var jdate=document.getElementById("jdate").value;
+            var salary=document.getElementById("salary").value;
+            
+            if(!regName.test(name))
+                alert("invalid name is given");
+            if(!dateformatjdate.test(jdate))
+                alert("invalid joining date is given");
+            if(!dateformatdob.test(dob))
+                alert("invalid date of birth is given");
+            if(!salaryformat.test(salary))
+                alert("invalid salary");
+        }
+        </script>
+    </head>
+<body>
+    <form>
+        <h1>Employee Rsgistration Details</h1>
+            employee name :
+            <input type="text" name="fname" id="name"><br>
+            date of birth :
+            <input type="text" name="dob" id="dob"><br>
+            joining date :
+            <input type="text" name="jdate" id="jdate"><br>
+            salary :
+            <input type="text" name="salary" id="salary"><br>
+            <input type="button" value="validate" onclick="validate()">
+    </form>
+</body>
+</html>

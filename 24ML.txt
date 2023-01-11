@@ -1,0 +1,18 @@
+import pandas as pd
+import numpy as np
+
+data=pd.read_csv("ass3_data.csv")
+print(data)
+
+x=data.iloc[:,0:1].values
+print(x)
+
+from sklearn.preprocessing import LabelEncoder
+le=LabelEncoder()
+x1=le.fit_transform(x)
+print(x1)
+
+from sklearn.preprocessing import OneHotEncoder
+ohe=OneHotEncoder()
+xn=ohe.fit_transform(x).toarray()
+print(xn)

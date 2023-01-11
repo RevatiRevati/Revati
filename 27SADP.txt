@@ -1,0 +1,107 @@
+Shape.java
+
+public interface Shape{
+void draw();
+}
+
+Square.java
+
+public class Square implements Shape{
+	@Override
+	public void draw(){
+	System.out.println("Inside Square::draw() method");
+	}
+}
+
+ShapeFactory.java
+
+public class ShapeFactory extends AbstractFactory{
+@Override 
+public Shape getShape(String shapeType){
+if(shapeType.equalsIgnoreCase("RECANGLE")){
+return new Rectangle();
+}
+else 
+if(shapeType.equalsIgnoreCase("SQUARE")){
+return new Square();
+}
+return null;
+}
+}
+
+RoundedSquare.java
+
+public class RoundedSquare implements Shape{
+	@Override
+	public void draw(){
+	System.out.println("Inside RoundedSquare::draw() method");
+	}
+}
+
+RoundedShapeFactory.java
+
+public class RoundedShapeFactory extends AbstractFactory{
+	@Override
+	public Shape getShape(String shapeType){
+	if(shapeType.equalsIgnoreCase("RECTANGLE")){
+	return new RoundedRectangle();
+}else if(shapeType.equalsIgnoreCase("SQUARE")){
+	return new RoundedSquare();
+}
+return null;
+}
+}
+
+RoundedRectangle.java
+
+public class RoundedRectangle implements Shape{
+	@Override
+	public void draw(){
+	System.out.println("Inside RoundedRectangle::draw() method");
+	}
+}
+
+Rectangle.java
+
+public class Rectangle implements Shape{
+	@Override
+	public void draw(){
+	System.out.println("Inside Rectangle::draw() method");
+	}
+}
+
+FactoryProducer.java
+
+public class FactoryProducer{
+public static AbstractFactory getFactory(boolean rounded){
+	if(rounded){
+	return new RoundedShapeFactory();
+}else{
+	return new ShapeFactory();
+		}
+	}
+}
+
+AbstractFactory.java
+
+public abstract class AbstractFactory {
+	abstract Shape getShape(String shapeType) ;
+ }
+
+AbstractFactoryPatternDemo.java
+
+public class AbstractFactoryPatternDemo {
+	public static void main(String[] args) {
+	   AbstractFactory shapeFactory = FactoryProducer.getFactory(false);
+	   Shape shape1 = shapeFactory.getShape("RECTANGLE");
+	   shape1.draw();
+	   Shape shape2 = shapeFactory.getShape("SQUARE");
+	   shape2.draw();
+	   AbstractFactory shapeFactory1 = FactoryProducer.getFactory(true);
+	   Shape shape3 = shapeFactory1.getShape("RECTANGLE");
+	   shape3.draw();
+	   Shape shape4 = shapeFactory1.getShape("SQUARE");
+	   shape4.draw();
+	   
+	}
+ }

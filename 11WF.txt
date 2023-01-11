@@ -1,0 +1,30 @@
+var mysql = require('mysql');
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "password",
+});
+
+con.connect(function(err) {
+  if (err) throw err;
+  else{
+    console.log("Connected!");
+    con.query("select * from customer1", function (err, result) {
+      if (err) throw err;
+      else{
+        console.log(result);
+        con.query("delete from customer1 where name = 'riya'", function (err, result){
+          if (err) throw err;
+          else{
+            console.log("Deleted Record : " + result.affectedRows);
+            con.query("select * from students1", function (err, result) {
+              if (err) throw err;
+              else
+                console.log(result);
+            });
+        }
+        });
+      }
+    });
+      }
+  });

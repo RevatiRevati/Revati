@@ -1,0 +1,53 @@
+models.py
+from django.db import models
+from django.contrib.auth.models import User
+class myblog(models.Model):
+    title = models.CharField(max_length=200, unique=True)
+    slug = models.CharField(max_length=200, unique=True)
+
+views.py
+from django.shortcuts import render
+from blog.models import myblog
+def myf(req):
+	model = myblog
+	context = {"reg":myblog.objects.all()}
+	return render(req,'blog.html',context)	
+
+urls.py
+from django.contrib import admin
+from django.urls import path
+from blog.views import myf
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('blog/',myf)
+]
+
+blog.html
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+
+<div class="header">
+  <h2>Welcome to my Blog</h2>
+</div>
+
+<div class="row">
+  <div class="leftcolumn">
+    <div class="card">
+      <h2>Django</h2>
+      <h5>MSc. Computer Science Part 2</h5>
+    </div>
+  </div>
+  <div class="rightcolumn">
+    <div class="card">
+      <h2>Subjects :</h3>
+      <h4>SADP</h6>
+      <h4>Web Frameworks</h6>
+      <h4>Machine Learning</h6>
+      </div>
+  </div>
+</div>
+</body>
+</html>

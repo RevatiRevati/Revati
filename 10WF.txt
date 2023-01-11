@@ -1,0 +1,29 @@
+var mysql = require('mysql');
+var con = mysql.createConnection({
+host: "localhost",
+user: "root",
+password: "password",
+});
+con.connect(function(err) {
+  if (err) throw err;
+  else{
+    console.log("Connected!");
+
+    con.query("create table students1(roll int primary key, name text, address text)",function(err){
+      if(err) throw err;
+      else{
+        con.query("insert into students1 values(111,'sam','kondhwa'),(222,'vaish','kirkitwadi'),(333,'saarth','wanawadi')",function(err){
+          if(err) throw err;
+          else{
+            console.log("data inserted!");
+            con.query("select * from students", function (err, result) {
+              if (err) throw err;
+              else
+                console.log(result);
+            });  
+          }
+        });
+      }
+    });
+  }
+});

@@ -1,0 +1,24 @@
+views.py
+from django.shortcuts import render
+from django.http import HttpResponse
+
+def f1(req):
+	return render(req,"a.html")
+def f2(req):
+	return render(req,"b.html")
+def f3(req):
+	return render(req,"c.html")
+
+urls.py
+from django.contrib import admin
+from django.urls import path
+from views.views import f1
+from views.views import f2
+from views.views import f3
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+	path('first/',f1),
+	path('second/',f2),
+	path('third/',f3),
+] 

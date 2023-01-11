@@ -1,0 +1,23 @@
+var rd=require(“readline”);
+var fs=require(“fs”);
+var r=rd.createInterface(
+{input:process.stdin,output:process.stdout});
+r.question(“Enter 1st file name”,function(Fname1){
+r.question(“Enter 1st file name”,function(Fname1){
+fs.readFile(Fname1,function(err,content){
+fs.appendFile(Fname2,content,function(err){
+if(err)
+{
+Console.log(“file cant open”);
+}
+Else
+{
+Console.log(“Append successful”);
+}
+fs.readFile(‘b.txt’,function(err,content1){
+console.log(“Content:”+content1);
+});
+});
+});
+});
+});

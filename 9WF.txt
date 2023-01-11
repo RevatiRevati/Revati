@@ -1,0 +1,18 @@
+var mysql = require('mysql');
+var con = mysql.createConnection({
+  host: 'localhost',
+  user: "root",
+  password: "password",
+  });
+
+con.connect(function(err) {
+  if (err) throw err;
+  else
+    console.log("Connected!");
+});
+
+con.query('select * from customer1', function(err,rows){
+  if(err) throw err;
+  else
+    console.log(rows);
+});

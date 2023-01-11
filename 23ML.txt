@@ -1,0 +1,17 @@
+import pandas as pd
+import numpy as np
+
+data=pd.read_csv("ass2_data.csv")
+print(data)
+
+print(data.isnull())
+
+print(data.notnull())
+
+data1=data.dropna(axis=0,how="any")
+print(data1)
+
+data["m1"]=data["m1"].replace(np.NaN,data["m1"].mean())
+data["m2"]=data["m2"].replace(np.NaN,data["m2"].mean())
+data["m3"]=data["m3"].replace(np.NaN,data["m3"].mean())
+print(data)

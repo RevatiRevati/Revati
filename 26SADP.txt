@@ -1,0 +1,75 @@
+Duck.java
+
+abstract class Duck {
+
+    private FlyBehaviour flyBehaviour;
+
+    Duck(FlyBehaviour flyBehaviour) {
+        if (flyBehaviour != null) {
+            this.flyBehaviour = flyBehaviour;
+        } else {
+            throw new UnsupportedOperationException("bad fly behaviour");
+        }
+    }
+
+    public String quack() {
+        return "Quack!";
+    }
+
+    public String swim() {
+        return "Swim!";
+    }
+
+    String performFly() {
+        return flyBehaviour.fly();
+    }
+
+    abstract public String display();
+}
+MallardDuck.java
+
+class MallardDuck extends Duck {
+
+    MallardDuck(FlyBehaviour flyBehaviour) {
+        super(flyBehaviour);
+    }
+
+    @Override
+    public String display() {
+        return "Looks like a Mallard Duck!";
+    }
+}
+
+RedHeadDuck.java
+
+class RedHeadDuck extends Duck {
+
+    public String display() {
+        return "Red head Duck has a red head!";
+    }
+}
+
+FlyBehaviour.java
+
+interface FlyBehaviour {
+    String fly();
+ }
+
+FlyWithWings.java
+
+class FlyWithWings implements FlyBehaviour {
+
+    public String fly() {
+        return "fly with two wings";
+    }
+}
+
+FlyNoWay.java
+
+class FlyNoWay implements FlyBehaviour {
+
+    @Override
+    public String fly() {
+        return "cannot fly";
+    }
+}

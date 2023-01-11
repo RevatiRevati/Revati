@@ -1,0 +1,28 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+data=pd.read_csv("user_data1.csv")
+x=data.iloc[:,2:3].values
+y=data.iloc[:,3].values
+print(x)
+print(y)
+
+from sklearn.preprocessing import StandardScaler
+sc_x=StandardScaler()
+x=sc_x.fit_transform(x)
+
+
+from sklearn.svm import SVR
+reg=SVR()
+reg.fit(x,y)
+
+y_pred=reg.predict(np.array([[35]]))
+print(y_pred)
+
+x_grid=np.arange(min(x),max(x),0.01)
+x_grid=x_grid.reshape(len(x_grid),1)
+
+plt.scatter(x,y,c="red")
+plt.plot(x_grid,reg.predict(x_grid),c="green")
+plt.show()

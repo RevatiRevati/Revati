@@ -1,0 +1,10 @@
+var express = require("express");
+var app = express();
+app.get('/a/',function(req,res){
+    res.download('file2.txt');
+});
+app.listen(8051,function(err){
+    if(err)
+    console.log(err);
+    console.log("Server is listening..");
+});

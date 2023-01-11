@@ -1,0 +1,10 @@
+var events = require('events');
+var myeventEmitter = new events.EventEmitter();
+myeventEmitter.on('myevent', function Listener1(){
+     console.log('listener1 executed!');
+});
+myeventEmitter.on('myevent' ,function Listener2(a,b){
+     console.log('listener2 executed! parameter');
+});
+console.log(myeventEmitter.listeners('myevent'));
+myeventEmitter.emit('myevent' ,10,20);
